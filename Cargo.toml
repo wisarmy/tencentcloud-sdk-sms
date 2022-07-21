@@ -1,0 +1,20 @@
+[package]
+name = "tencent-sdk-sms"
+version = "0.1.0"
+authors = ["wisarmy <wisarmy@gmail.com>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+crypto-hash = "0.3"
+hex = "0.4.3"
+hmac = "0.12.1"
+sha2 = "0.10.2"
+reqwest = { version = "0.11", features = ["json"] }
+serde = { version = "1.0.139", features = ["derive"] }
+chrono = "0.4.19"
+serde_json = "1.0.82"
+
+[dev-dependencies]
+tokio = { version = "1.20.0", features = ["full"] }
