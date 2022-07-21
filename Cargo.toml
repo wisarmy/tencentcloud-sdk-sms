@@ -1,8 +1,14 @@
 [package]
-name = "tencent-sdk-sms"
+name = "tencentcloud-sdk-sms"
 version = "0.1.0"
-authors = ["wisarmy <wisarmy@gmail.com>"]
 edition = "2021"
+authors = ["wisarmy <wisarmy@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/wisarmy/tencent-sdk-sms"
+description = "tencent cloud sms rust sdk"
+categories = ["tencent", "tencent-cloud", "sms", "sdk"]
+keywords = ["tencent", "sms", "sdk"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

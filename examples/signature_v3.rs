@@ -1,4 +1,4 @@
-use tencent_sdk_sms::{
+use tencentcloud_sdk_sms::{
     client::{Client, SendSmsRequest},
     client_profile::ClientProfile,
     credentials::Credential,
