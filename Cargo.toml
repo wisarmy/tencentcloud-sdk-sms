@@ -7,8 +7,7 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/wisarmy/tencent-sdk-sms"
 description = "tencent cloud sms rust sdk"
-categories = ["tencent", "tencent-cloud", "sms", "sdk"]
-keywords = ["tencent", "sms", "sdk"]
+keywords = ["tencent", "tencent-cloud", "sms", "sdk"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
