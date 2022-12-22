@@ -1,37 +1,26 @@
 use tencentcloud_sdk_sms::{
     client::{Client, SendSmsRequest},
-    client_profile::ClientProfile,
     credentials::Credential,
 };
 #[tokio::main]
 async fn main() {
-    // prepare param
-    let secret_id = "";
-    let secret_key = "";
-    let phone_number = "+86..";
-    let phone_number_set = vec![phone_number.to_owned()];
-    let sms_sdk_app_id = "";
-    let template_id = "";
-    let sign_name = "";
-    let template_param_set = vec!["".to_owned()];
-    let region = "ap-guangzhou";
-
-    let credential = Credential::new(secret_id.to_owned(), secret_key.to_owned(), None);
-    let mut cpf = ClientProfile::default();
-    cpf.http_profile.end_point = "sms.tencentcloudapi.com".to_owned();
-    //cpf.debug = true;
-    let client = Client::new(credential, region.to_owned(), cpf);
-
-    let mut request = SendSmsRequest::default();
-    request.params.phone_number_set = phone_number_set;
-    request.params.sms_sdk_app_id = sms_sdk_app_id.to_owned();
-    request.params.template_id = template_id.to_owned();
-    request.params.sign_name = sign_name.to_owned();
-    request.params.template_param_set = template_param_set;
-
+    // build client
+    let credential = Credential::new("your secret_id", "your secret_key", None);
+    let client = Client::new(credential, "ap-guangzhou");
+    // build request
+    let request = SendSmsRequest::new(
+        vec!["+86..".to_owned()],
+        "your sms_sdk_app_id",
+        "your template_id",
+        "your sign_name",
+        vec!["your template param".to_owned()],
+    );
+    // send
     let response = client.send_sms(request).await;
+    // check
     match response {
         Ok(res) => {
+            let phone_number = "+86..";
             println!(
                 "send {}: {:?}",
                 phone_number,

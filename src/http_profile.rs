@@ -14,7 +14,7 @@ impl Default for HttpProfile {
             req_timeout: 30,
             scheme: "HTTPS".to_owned(),
             root_domain: "".to_owned(),
-            end_point: "".to_owned(),
+            end_point: "sms.tencentcloudapi.com".to_owned(),
         }
     }
 }

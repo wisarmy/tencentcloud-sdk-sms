@@ -20,3 +20,10 @@ impl Default for ClientProfile {
         }
     }
 }
+
+impl ClientProfile {
+    pub fn set_debug(mut self, debug: bool) -> Self {
+        self.debug = debug;
+        self
+    }
+}

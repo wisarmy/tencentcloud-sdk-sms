@@ -6,10 +6,14 @@ pub struct Credential {
 }
 
 impl Credential {
-    pub fn new(secret_id: String, secret_key: String, token: Option<String>) -> Self {
+    pub fn new(
+        secret_id: impl Into<String>,
+        secret_key: impl Into<String>,
+        token: Option<String>,
+    ) -> Self {
         Self {
-            secret_id,
-            secret_key,
+            secret_id: secret_id.into(),
+            secret_key: secret_key.into(),
             token,
         }
     }

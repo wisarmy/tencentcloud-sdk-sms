@@ -21,7 +21,24 @@ pub struct Client {
 }
 
 impl Client {
-    pub fn new(credential: Credential, region: String, client_profile: ClientProfile) -> Self {
+    pub fn new(credential: Credential, region: impl Into<String>) -> Self {
+        let client_profile = ClientProfile::default();
+        Self {
+            region: region.into(),
+            http_client: reqwest::Client::default(),
+            profile: client_profile.clone(),
+            http_profile: client_profile.http_profile,
+            credential,
+            sign_method: "TC3-HMAC-SHA256".to_owned(),
+            debug: client_profile.debug,
+            ..Default::default()
+        }
+    }
+    pub fn new_with_client_profile(
+        credential: Credential,
+        region: String,
+        client_profile: ClientProfile,
+    ) -> Self {
         Self {
             region,
             http_client: reqwest::Client::default(),
@@ -163,6 +180,30 @@ impl Default for SendSmsRequest {
             domain: format!("{}.{}", "sms", ROOT_DOMAIN),
             path: "/".to_owned(),
             params: SmsRequestParams::default(),
+        }
+    }
+}
+impl SendSmsRequest {
+    pub fn new(
+        phone_number_set: Vec<String>,
+        sms_sdk_app_id: impl Into<String>,
+        template_id: impl Into<String>,
+        sign_name: impl Into<String>,
+        template_param_set: Vec<String>,
+    ) -> Self {
+        Self {
+            service: "sms".to_owned(),
+            version: API_VERSION.to_owned(),
+            action: "SendSms".to_owned(),
+            domain: format!("{}.{}", "sms", ROOT_DOMAIN),
+            path: "/".to_owned(),
+            params: SmsRequestParams {
+                phone_number_set,
+                sms_sdk_app_id: sms_sdk_app_id.into(),
+                template_id: template_id.into(),
+                sign_name: sign_name.into(),
+                template_param_set,
+            },
         }
     }
 }
